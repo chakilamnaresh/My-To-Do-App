@@ -1,0 +1,47 @@
+{%extends 'home/base.html'}
+{% block main %}
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+        }
+        .custom-form {
+            max-width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<h1>Update Task</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ task.title }}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required>{{ task.description }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="priority">Priority</label>
+        <select class="form-control" id="priority" name="priority" required>
+            <option value="high" {% if task.priority == 'high' %}selected{% endif %}>High</option>
+            <option value="medium" {% if task.priority == 'medium' %}selected{% endif %}>Medium</option>
+            <option value="low" {% if task.priority == 'low' %}selected{% endif %}>Low</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" name="status" required>
+            <option value="completed" {% if task.status == 'completed' %}selected{% endif %}>Completed</option>
+            <option value="pending" {% if task.status == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="hold" {% if task.status == 'hold' %}selected{% endif %}>Hold</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Task</button>
+</form>
+
+
+{% endblock %}

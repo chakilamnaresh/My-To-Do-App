@@ -1,0 +1,38 @@
+{% extends "home/base.html" %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+  <p>Hello, {{user.username}}</p>
+    <h1>Your To-Do List</h1>
+
+<ul>
+    {% for task in tasks %}
+        <li>
+            <strong>Title:</strong> {{ task.title }}<br>
+            <strong>Description:</strong> {{ task.description }}<br>
+            <strong>Priority:</strong> {{ task.priority }}<br>
+            <strong>Status:</strong> {{ task.status }}
+            <a class="btn btn-default btn-sm glyphicon glyphicon-pencil" href="{% url 'update' task.id %}">Update</a>
+            <a class="glyphicon glyphicon-trash" href="{% url 'delete' task.id %}"></a>
+
+
+
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
+</body>
+</html>

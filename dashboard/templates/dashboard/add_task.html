@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add Task</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+        }
+        .custom-form {
+            max-width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Task</h1>
+        <form class="custom-form" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select class="form-control" id="priority" name="priority" required>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
+                    <option value="hold">Hold</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            <a href="#" class="btn btn-danger" onclick="cancelForm()">Cancel</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function resetForm() {
+            document.getElementById("title").value = "";
+            document.getElementById("description").value = "";
+            document.getElementById("priority").selectedIndex = 0;
+            document.getElementById("status").selectedIndex = 0;
+        }
+
+        function cancelForm() {
+            if (confirm("Are you sure you want to cancel?")) {
+                window.location.href = "/"; // Replace with the URL to navigate to on cancel
+            }
+        }
+    </script>
+</body>
+</html>

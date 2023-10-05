@@ -1,0 +1,41 @@
+{% extends 'home/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block main %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 50px;
+    margin: 100px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+    </style>
+</head>
+<body>
+    
+    
+    <h1>Welcome to To-Do Dashboard</h1>
+    <div class="card">
+        <h2>My Tasks</h2>
+        <a href="/dashboard/display/">My Tasks</a>
+    </div>
+
+    <div class="card">
+        <h2>Add Tasks</h2>
+        <a href="/dashboard/create/">Add Task</a>
+    </div>
+
+    <div class="card">
+        <h2>Manage my Tasks</h2>
+        <a href="/dashboard/update/">Update/Delete Task</a>
+    </div>
+    
+{% endblock %}
+</body>
+</html>

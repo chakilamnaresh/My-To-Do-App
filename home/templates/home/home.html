@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+{% block main %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<h2 style="margin:50px">Welcome to To-Do App</h2>
+{% if user.is_authenticated %}    
+<h1>Task Analysis</h1>
+
+    <div id="pie_chart" style="width: 500px; height: 500px;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var data = [{
+                values: [{{ completed_tasks }}, {{ pending_tasks }}, {{ hold_tasks }}],
+                labels: ['Completed', 'Pending', 'Hold'],
+                type: 'pie'
+            }];
+
+            var layout = {
+                height: 500,
+                width: 500
+            };
+
+            Plotly.newPlot('pie_chart', data, layout);
+        });
+    </script>
+{% else %}
+
+<h3>Login to View the Analysis of Tasks</h3>
+{% endif %}
+{% endblock %}
